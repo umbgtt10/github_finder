@@ -1,0 +1,46 @@
+import {FaUtensils, FaInfo, FaStar, FaLink, FaEye} from 'react-icons/fa'
+import { PropTypes } from "prop-types"
+
+export default function RepoItem({repo}) {
+
+   const {
+     name,
+     description,
+     html_url,
+     forks,
+     open_issues,
+     watchers_count,
+     stargazers_count
+   } = repo
+
+  return (
+    <div class='mb-2 rounded-medium card bg-gray-500 hover:bg-gray-700'>
+        <div className="card-body">
+            <h3 className="mb-2 text-xl font-semibold">
+                <a href={html_url}>
+                    <FaLink clasName='inline mr-1' /> {name}
+                </a>
+            </h3>
+            <p className="mb-3">{description}</p>
+            <div>
+                <div className="mr-2 badge badge-info badge-lg">
+                    <FaEye clasName='mr-2' /> {watchers_count}
+                </div>
+                <div className="mr-2 badge badge-success badge-lg">
+                    <FaStar clasName='mr-2' /> {stargazers_count}
+                </div>
+                <div className="mr-2 badge badge-error badge-lg">
+                    <FaInfo clasName='mr-2' /> {open_issues}
+                </div>
+                <div className="mr-2 badge badge-warning badge-lg">
+                    <FaUtensils clasName='mr-2' /> {forks}
+                </div>
+            </div>
+        </div>
+    </div>
+  )
+}
+
+RepoItem.propTypes = {
+   repo: PropTypes.object.isRequired
+}
